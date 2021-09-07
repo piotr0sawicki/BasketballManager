@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.DataAccess;
+using WebApi.Data;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -21,8 +22,9 @@ namespace WebApi.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet]
-        public async Task<ActionResult<List<GameModel>>> GetGames()
+        public  Task<ActionResult<List<GameModel>>> GetGames()
         {
             return null;//await _context.Game.ToListAsync();
         }

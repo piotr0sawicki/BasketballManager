@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Models;
 
-namespace WebApi.DataAccess
+namespace WebApi.Data
 {
     public class DataContext : IdentityDbContext<AppUser>
     {

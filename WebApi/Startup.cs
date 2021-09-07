@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.DataAccess;
+using WebApi.Data;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using WebApi.Models;

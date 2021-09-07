@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using WebApi.DataAccess;
+using WebApi.Data;
 
 namespace WebApi.Services
 {
