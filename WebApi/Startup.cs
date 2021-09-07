@@ -14,7 +14,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.DataAccess;
 using System.Text;
-
+using Microsoft.AspNetCore.Identity;
+using WebApi.Models;
+using WebApi.Extensions;
 
 namespace WebApi
 {
@@ -30,6 +32,14 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(policy =>
+            {
+                policy.AddPolicy("OpenCorsPolicy", opt =>
+                    opt.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
+
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseSqlServer(
@@ -41,8 +51,8 @@ namespace WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
-            
-            
+
+            services.AddIdentityServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,9 +66,10 @@ namespace WebApi
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("OpenCorsPolicy");
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

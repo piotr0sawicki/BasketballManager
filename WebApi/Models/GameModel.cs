@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Models
 {
-    public class Game
+    public class GameModel
     {
         public int Id { get; set; }
         public int HomeTeamId { get; set; }

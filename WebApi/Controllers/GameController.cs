@@ -22,9 +22,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Game>>> GetGames()
+        public async Task<ActionResult<List<GameModel>>> GetGames()
         {
-            return await _context.Game.ToListAsync();
+            return null;//await _context.Game.ToListAsync();
         }
     }
 }
