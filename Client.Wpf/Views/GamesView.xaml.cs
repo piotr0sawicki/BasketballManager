@@ -25,10 +25,10 @@ namespace Client.Wpf.Views
     /// </summary>
     /// 
     [MvxContentPresentation]
-    [MvxViewFor(typeof(GameDetailsViewModel))]
-    public partial class GameDetailsView : MvxWpfView
+    public partial class GamesView : MvxWpfView
     {
-        public GameDetailsView()
+
+        public GamesView()
         {
             InitializeComponent();
         }

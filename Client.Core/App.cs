@@ -19,7 +19,7 @@ namespace Client.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.GameDetailsViewModel>();
+            RegisterAppStart<ViewModels.GamesViewModel>();
             
         }
     }

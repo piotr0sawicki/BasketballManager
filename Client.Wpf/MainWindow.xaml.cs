@@ -11,7 +11,7 @@ namespace Client.Wpf
     {
         public MainWindow()
         {
-            DataContext = new GameDetailsViewModel();
+            DataContext = new GamesViewModel();
             InitializeComponent();
         }
     }

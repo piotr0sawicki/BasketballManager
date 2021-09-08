@@ -9,9 +9,27 @@ using System.Threading.Tasks;
 
 namespace Client.Core.ViewModels
 {
-    public class GameDetailsViewModel: MvxViewModel
+    public class GamesViewModel: MvxViewModel
     {
         private ObservableCollection<GameModel> _games = new ObservableCollection<GameModel>();
+
+
+        public GamesViewModel()
+        {
+            // Test data
+            _games.Add(new GameModel()
+            {
+                Id = 1,
+                GuestScore =12, 
+                HomeScore = 123,
+                GuestTeamId = 1,
+                HomeTeamId = 2,
+                HomeTeam = "Home Team",
+                GuestTeam = "Guest Team",
+                Localization = "Warszawa",
+                LocalizationId = 1
+            }) ;
+        }
 
         public ObservableCollection<GameModel> Games
         {
