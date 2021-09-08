@@ -17,6 +17,8 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using WebApi.Models;
 using WebApi.Extensions;
+using WebApi.Library.DataAccess;
+using WebApi.DataAccess;
 
 namespace WebApi
 {
@@ -51,6 +53,11 @@ namespace WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
+
+
+            // Personal services
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+            services.AddTransient<IGameData, GameData>();
 
             services.AddIdentityServices(Configuration);
         }

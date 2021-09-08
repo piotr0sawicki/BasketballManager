@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Data;
+using WebApi.DataAccess;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -15,18 +16,18 @@ namespace WebApi.Controllers
     [ApiController]
     public class GameController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IGameData _gameData;
 
-        public GameController(DataContext context)
+        public GameController(IGameData gameData)
         {
-            _context = context;
+            _gameData = gameData;
         }
 
-        [Authorize]
+       // [Authorize]
         [HttpGet]
-        public  Task<ActionResult<List<GameModel>>> GetGames()
+        public ActionResult<List<GameModel>> GetGames()
         {
-            return null;//await _context.Game.ToListAsync();
+            return  _gameData.GetGames();
         }
     }
 }

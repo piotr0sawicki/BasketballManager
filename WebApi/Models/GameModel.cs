@@ -14,5 +14,11 @@ namespace WebApi.Models
         public int GuestScore { get; set; }
         public int LocalizationId { get; set; }
         public DateTime Tipoff { get; set; }
+
+        // TODO: maybe change sp and move it away from this model
+        public string HomeTeam { get; set; }
+        public string GuestTeam { get; set; }
+        public string Localization { get; set; }
+
     }
 }
