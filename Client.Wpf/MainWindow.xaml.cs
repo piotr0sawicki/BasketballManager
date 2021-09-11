@@ -1,4 +1,6 @@
-﻿using Client.Core.ViewModels;
+﻿using Client.Core.Api;
+using Client.Core.ViewModels;
+using MvvmCross;
 using MvvmCross.Navigation;
 using MvvmCross.Platforms.Wpf.Views;
 
@@ -11,8 +13,8 @@ namespace Client.Wpf
     {
         public MainWindow()
         {
-            DataContext = new GamesViewModel();
             InitializeComponent();
         }
+
     }
 }
