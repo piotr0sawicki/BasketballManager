@@ -49,17 +49,14 @@ namespace WebApi
             });
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
-            });
-
 
             // Personal services
             services.AddTransient<ISqlDataAccess, SqlDataAccess>();
             services.AddTransient<IGameData, GameData>();
 
+            // Extensions
             services.AddIdentityServices(Configuration);
+            services.AddSwagger(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

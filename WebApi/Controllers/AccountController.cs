@@ -27,7 +27,7 @@ namespace WebApi.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("Login")] 
         public async Task<ActionResult<AuthenticatedUserModel>> Login (LoginUserModel loginUser )
         {
             var user = await _userManager.FindByEmailAsync(loginUser.Email);

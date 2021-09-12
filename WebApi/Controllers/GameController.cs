@@ -12,6 +12,7 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GameController : ControllerBase
@@ -23,7 +24,6 @@ namespace WebApi.Controllers
             _gameData = gameData;
         }
 
-       // [Authorize]
         [HttpGet]
         public ActionResult<List<GameModel>> GetGames()
         {
