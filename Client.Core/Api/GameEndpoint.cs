@@ -19,7 +19,6 @@ namespace Client.Core.Api
 
         public async Task<List<GameModel>> GetAll()
         {
-            var p = _apiHelper;
             using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("api/Game"))
             {
                 if (response.IsSuccessStatusCode)

@@ -27,7 +27,7 @@ namespace WebApi
             try
             {
                 var context = services.GetRequiredService<DataContext>();
-                var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                var userManager = services.GetRequiredService<UserManager<AppUserModel>>();
             }
             catch (Exception ex)
             {

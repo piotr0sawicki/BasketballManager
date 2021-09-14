@@ -12,7 +12,7 @@ namespace WebApi.Services
 {
     public class TokenService
     {
-        public string CreateToken(AppUser user)
+        public string CreateToken(AppUserModel user)
         {
             var claims = new List<Claim>
             {

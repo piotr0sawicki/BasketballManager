@@ -34,14 +34,14 @@ namespace Client.Wpf.Views
         }
         protected override void InitializeLastChance(IMvxIoCProvider iocProvider)
         {
-            base.InitializeLastChance(iocProvider);
 
 
             Mvx.IoCProvider.RegisterSingleton(AddConfiguration());
             Mvx.IoCProvider.RegisterSingleton<IApiHelper>(new ApiHelper(Mvx.IoCProvider.Resolve<IConfiguration>()));
-            Mvx.IoCProvider.RegisterSingleton<IGameEndpoint>(new GameEndpoint(new ApiHelper(Mvx.IoCProvider.Resolve<IConfiguration>())));
-            // Per request
-            //Mvx.IoCProvider.RegisterType<IGameService, GameService>();   //RegisterPerR<IGameEndpoint>(new GameEndpoint(Mvx.IoCProvider.Resolve<IApiHelper>()));
+            Mvx.IoCProvider.RegisterSingleton<IGameEndpoint>(new GameEndpoint(Mvx.IoCProvider.Resolve<IApiHelper>()));
+
+            base.InitializeLastChance(iocProvider);
+
         }
 
         private IConfiguration AddConfiguration()

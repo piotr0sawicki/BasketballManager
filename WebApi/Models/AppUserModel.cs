@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Data
 {
-    public class AppUser : IdentityUser
+    public class AppUserModel : IdentityUser
     {
         public string FirstName { get; set; }
     }

@@ -22,12 +22,8 @@ namespace Client.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
           
-            RegisterAppStart<ViewModels.GamesViewModel>();
+            RegisterAppStart<ViewModels.LoginViewModel>();
         }
-
-       
-        
     }
 }

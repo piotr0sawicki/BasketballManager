@@ -14,16 +14,42 @@ namespace Client.Core.ViewModels
 {
     public class GamesViewModel: MvxViewModel
     {
-        private readonly IGameEndpoint _gameEndpoint;
+        public readonly IGameEndpoint _gameEndpoint;
         private ObservableCollection<GameModel> _games = new ObservableCollection<GameModel>();
 
 
         public IMvxCommand RefreshCommand { get; set; }
 
+        public ObservableCollection<GameModel> Games
+        {
+            get { return _games; }
+            set { SetProperty(ref _games, value); }
+        }
+
+
+        public GamesViewModel(IGameEndpoint gameEndpoint)
+        {
+            _gameEndpoint = gameEndpoint;
+            RefreshCommand = new MvxCommand(Refresh);
+        }
+        public override async Task Initialize()
+        {
+            await base.Initialize();
+
+            MvxNotifyTask.Create(() => LoadGames());
+            return;
+        }
+      
+        private async Task LoadGames()
+        {
+            var productList = await _gameEndpoint.GetAll();
+
+            Games = new ObservableCollection<GameModel>(productList);
+            return;
+        }
 
         public void Refresh()
         {
-            // For test
             Games.Add(new GameModel()
             {
                 Id = 1,
@@ -37,34 +63,5 @@ namespace Client.Core.ViewModels
                 LocalizationId = 1
             });
         }
-
-        public GamesViewModel()
-        {
-            _gameEndpoint = Mvx.IoCProvider.Resolve<IGameEndpoint>();
-            RefreshCommand = new MvxCommand(Refresh);
-        }
-
-        public override async Task Initialize()
-        {
-            await base.Initialize();
-
-            MvxNotifyTask.Create(() => LoadGames());
-            return;
-        }
-
-        public ObservableCollection<GameModel> Games
-        {
-            get { return _games; }
-            set { SetProperty(ref _games, value); }
-        }
-
-        private async Task LoadGames()
-        {
-            var productList = await _gameEndpoint.GetAll();
-
-            Games = new ObservableCollection<GameModel>(productList);
-            return;
-        }
-     
     }
 }

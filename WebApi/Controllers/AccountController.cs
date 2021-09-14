@@ -16,19 +16,20 @@ namespace WebApi.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUserModel> _userManager;
+        private readonly SignInManager<AppUserModel> _signInManager;
         private readonly TokenService _tokenService;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, TokenService tokenService)
+        public AccountController(UserManager<AppUserModel> userManager, SignInManager<AppUserModel> signInManager, TokenService tokenService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
         }
 
-        [HttpPost("Login")] 
-        public async Task<ActionResult<AuthenticatedUserModel>> Login (LoginUserModel loginUser )
+        [Route("Login")]
+        [HttpPost] 
+        public async Task<ActionResult<AuthenticatedUserModel>> Login([FromForm] LoginUserModel loginUser)
         {
             var user = await _userManager.FindByEmailAsync(loginUser.Email);
 
@@ -62,7 +63,7 @@ namespace WebApi.Controllers
                 return BadRequest("Username taken");
             }
 
-            var user = new AppUser
+            var user = new AppUserModel
             {
                 Email = registerUser.Email,
                 UserName = registerUser.UserName
