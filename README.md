@@ -1,4 +1,4 @@
-# BasketballManager 
+# BasketballManager - project in progress
 .NET Application to manage basketball activities, that provides wide feedback about players' progress.
 
 ## Table of Contents
