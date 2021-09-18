@@ -25,5 +25,12 @@ namespace WebApi.DataAccess
 
             return output;
         }
+        
+          public List<DetailModel> GetGameDetails(int id)
+        {
+            var output = _sql.LoadData<DetailModel, dynamic>("dbo.spGame_GetDetailsById", new {  Id = id }, "DataConnection");
+
+            return output;
+        }
     }
 }

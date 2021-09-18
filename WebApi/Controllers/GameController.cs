@@ -29,5 +29,12 @@ namespace WebApi.Controllers
         {
             return  _gameData.GetGames();
         }
+
+        [HttpGet]
+        [Route("Details")]
+        public ActionResult<List<DetailModel>> GetGameDetails(int Id)
+        {
+            return _gameData.GetGameDetails(Id);
+        }
     }
 }
