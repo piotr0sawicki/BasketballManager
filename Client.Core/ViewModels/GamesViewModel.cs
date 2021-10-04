@@ -2,6 +2,7 @@
 using Client.Core.Models;
 using MvvmCross;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace Client.Core.ViewModels
     public class GamesViewModel: MvxViewModel
     {
         public readonly IGameEndpoint _gameEndpoint;
+        private readonly IMvxNavigationService _mvxNavigationService;
         private ObservableCollection<GameModel> _games = new ObservableCollection<GameModel>();
+        private GameModel _selectedGame;
 
 
-        public IMvxCommand RefreshCommand { get; set; }
+        public IMvxCommand ViewDetailsCommand { get; set; }
 
         public ObservableCollection<GameModel> Games
         {
@@ -26,12 +29,23 @@ namespace Client.Core.ViewModels
             set { SetProperty(ref _games, value); }
         }
 
+        public GameModel SelectedGame
+        {
+            get { return _selectedGame; }
+            set 
+            { 
+                SetProperty(ref _selectedGame, value);
+                RaisePropertyChanged(() => CanViewDetails);
+            }
+        }
 
-        public GamesViewModel(IGameEndpoint gameEndpoint)
+        public GamesViewModel(IGameEndpoint gameEndpoint, IMvxNavigationService mvxNavigationService)
         {
             _gameEndpoint = gameEndpoint;
-            RefreshCommand = new MvxCommand(Refresh);
+            _mvxNavigationService = mvxNavigationService;
+            ViewDetailsCommand = new MvxAsyncCommand(ViewDetails);
         }
+
         public override async Task Initialize()
         {
             await base.Initialize();
@@ -42,26 +56,17 @@ namespace Client.Core.ViewModels
       
         private async Task LoadGames()
         {
-            var productList = await _gameEndpoint.GetAll();
+            var gameList = await _gameEndpoint.GetAll();
 
-            Games = new ObservableCollection<GameModel>(productList);
+            Games = new ObservableCollection<GameModel>(gameList);
             return;
         }
 
-        public void Refresh()
+        public async Task ViewDetails()
         {
-            Games.Add(new GameModel()
-            {
-                Id = 1,
-                GuestScore = 12,
-                HomeScore = 123,
-                GuestTeamId = 1,
-                HomeTeamId = 2,
-                HomeTeam = "Home Team",
-                GuestTeam = "Guest Team",
-                Localization = "Warszawa",
-                LocalizationId = 1
-            });
+            await _mvxNavigationService.Navigate<GameDetailsViewModel, GameDetailsParams>(new GameDetailsParams(SelectedGame));
         }
+
+        public bool CanViewDetails => !(SelectedGame == null);
     }
 }

@@ -7,5 +7,6 @@ namespace Client.Core.Api
     public interface IGameEndpoint
     {
         Task<List<GameModel>> GetAll();
+        Task<List<DetailModel>> GetGameDetailsById(int id);
     }
 }

@@ -1,8 +1,5 @@
-﻿using Client.Core;
-using Client.Core.ViewModels;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +20,13 @@ namespace Client.Wpf.Views
     /// <summary>
     /// Interaction logic for GameDetailsView.xaml
     /// </summary>
-    /// 
+    
     [MvxContentPresentation]
-    public partial class GamesView : MvxWpfView
+    public partial class GameDetailsView : MvxWpfView
     {
-
-        public GamesView()
+        public GameDetailsView()
         {
             InitializeComponent();
         }
-
     }
 }

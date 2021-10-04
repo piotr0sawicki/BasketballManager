@@ -32,5 +32,21 @@ namespace Client.Core.Api
                 }
             }
         }
+
+        public async Task<List<DetailModel>> GetGameDetailsById(int id)
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Game/Details?id={id}"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<DetailModel>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

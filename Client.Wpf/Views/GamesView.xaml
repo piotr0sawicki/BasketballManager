@@ -21,6 +21,7 @@
         <Style TargetType="TextBlock" x:Key="TeamNameText" BasedOn="{StaticResource ListViewText}">
             <Setter Property="FontWeight" Value="DemiBold"/>
         </Style>
+
     </views:MvxWpfView.Resources>
     
     <Grid>
@@ -33,6 +34,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+
             <RowDefinition Height="20"/>
 
         </Grid.RowDefinitions>
@@ -44,9 +47,9 @@
             </TextBlock>
         
         <!--Games list-->
-        <ListView Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Games}" HorizontalContentAlignment="Stretch" BorderThickness="0"  >
+        <ListView Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Games}" HorizontalContentAlignment="Stretch" BorderThickness="0" SelectedItem="{Binding SelectedGame}" >
             <ListView.ItemTemplate>
-                <DataTemplate >
+                <DataTemplate>
                     <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
@@ -65,7 +68,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button mvx:Bi.nd="Command RefreshCommand" Grid.Row="2" Content="refresh"/>
+        <Button mvx:Bi.nd="Command ViewDetailsCommand" Grid.Row="2" Grid.Column="2" Content="View Details" Margin="0 0 15 0" Width="125" HorizontalAlignment="Right" IsEnabled="{Binding Path=CanViewDetails}"/>
 
     </Grid>
 </views:MvxWpfView>
