@@ -46,12 +46,10 @@ namespace Client.Core.ViewModels
             {
                 await _apiHelper.Authenticate(Login, Password);
                 await _mvxNavigationService.Navigate<GamesViewModel>();
-                //ShowViewModel<GamesViewModel>();
             }
             catch(Exception ex)
             {
-                Password = "";
-                Login = "";
+                //TODO: show error message
             }
         }
 
